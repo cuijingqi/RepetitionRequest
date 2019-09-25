@@ -5,14 +5,14 @@ import java.io.File;
 public class Config {
     String url;
     String mark;
-    String replace;
+    File replace;
     Integer count;
     File location;
 
     public Config() {
     }
 
-    public Config(String url, String mark, String replace, Integer count, File location) {
+    public Config(String url, String mark, File replace, Integer count, File location) {
         this.url = url;
         this.mark = mark;
         this.replace = replace;
@@ -36,12 +36,16 @@ public class Config {
         this.mark = mark;
     }
 
-    public String getReplace() {
+    public File getReplace() {
         return replace;
     }
 
-    public void setReplace(String replace) {
-        this.replace = replace;
+    public void setReplace(File replace) {
+        if (!replace.isDirectory()) {
+            System.out.println("替换文件为NULL");
+            System.exit(0);
+        }
+        this.replace=replace;
     }
 
     public Integer getCount() {
